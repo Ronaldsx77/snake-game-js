@@ -3,15 +3,18 @@
 <body onKeyDown="pegadirecao(event.keyCode);">
 
 <h2 align="center">Ronald</h2>
+<h2 align="center" id="snakeGamePontos">Pontos: 0</h2>
 
 <div id=principal></div>
-<script>
+<script>   
+    let PontosDisplay = document.getElementById('snakeGamePontos');
+    let Pontos = 0;
     tabuleiro="<table align=center border=1>";
     for(x=0;x<10;x++){
         tabuleiro+="<tr>";
         for(y=0;y<10;y++)
             tabuleiro+="<td id=td"+x+"_"+y+" style='width:30px; height:30px;'> </td>";
-        tabuleiro+="</tr>";
+            tabuleiro+="</tr>";
     }
     document.getElementById('principal').innerHTML=tabuleiro+"</table>";
     cobra=[[5,0]];
@@ -21,14 +24,18 @@
     vivo=true;
     function anda(){
         document.getElementById('td'+cobra[cobra.length-1][0]+'_'+cobra[cobra.length-1][1]).style.background="#ffffff";
-        if(mx==cobra[cobra.length-1][0]&&my==cobra[cobra.length-1][1]){
-            mx=parseInt(Math.random()*10);
-            my=parseInt(Math.random()*10);
-            cobra[cobra.length]=[10,10];
-        }
+        
+            if(mx==cobra[cobra.length-1][0]&&my==cobra[cobra.length-1][1]){
+                Pontos = 10 + Pontos
+                PontosDisplay.innerHTML = `Pontos: ${Pontos}`;
+                mx=parseInt(Math.random()*10);
+                my=parseInt(Math.random()*10);
+                cobra[cobra.length]=[10,10]; 
+            }                 
+        
         for(x=cobra.length-1;x>0;x--){
             cobra[x][0]=cobra[x-1][0];
-            cobra[x][1]=cobra[x-1][1];
+            cobra[x][1]=cobra[x-1][1]; 
         }
         if(direcao==0)cobra[0][1]--;
         if(direcao==1)cobra[0][0]--;
