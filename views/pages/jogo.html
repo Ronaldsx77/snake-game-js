@@ -4,11 +4,13 @@
 
 <h2 align="center">Ronald</h2>
 <h2 align="center" id="snakeGamePontos">Pontos: 0</h2>
+<input type="button" value="Reiniciar" id="btReiniciar">
 
 <div id=principal></div>
 <script>   
     let PontosDisplay = document.getElementById('snakeGamePontos');
     let Pontos = 0;
+    let btReiniciar = document.getElementById("btReiniciar");
     tabuleiro="<table align=center border=1>";
     for(x=0;x<10;x++){
         tabuleiro+="<tr>";
@@ -55,6 +57,19 @@
         if(tecla==38)direcao=1;
         if(tecla==39)direcao=2;
         if(tecla==40)direcao=3;
+    }
+
+    btReiniciar.addEventListener("click", reset);
+    function reset(){
+        Pontos = 0
+        PontosDisplay.innerHTML = `Pontos: ${0}`;
+        document.getElementById('principal').innerHTML=tabuleiro+"</table>";
+        cobra=[[1,0]];
+        direcao=2;
+        mx=parseInt(Math.random()*10);
+        my=parseInt(Math.random()*10);
+        vivo=true;
+        anda();
     }
 </script>
 </body>
