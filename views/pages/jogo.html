@@ -4,13 +4,16 @@
 
 <h2 align="center">Ronald</h2>
 <h2 align="center" id="snakeGamePontos">Pontos: 0</h2>
-<input type="button" value="Reiniciar" id="btReiniciar">
+<p><input type="button" value="Reiniciar" id="btReiniciar"></p>
+<input type="button" value="Convidar um amigo" id="btConvidar">
+<h5 id="outLink"></h5>
 
 <div id=principal></div>
 <script>   
     let PontosDisplay = document.getElementById('snakeGamePontos');
     let Pontos = 0;
     let btReiniciar = document.getElementById("btReiniciar");
+    let outLink = document.getElementById("outLink");
     tabuleiro="<table align=center border=1>";
     for(x=0;x<10;x++){
         tabuleiro+="<tr>";
@@ -61,6 +64,7 @@
 
     btReiniciar.addEventListener("click", reset);
     function reset(){
+        outLink.textContent = ""
         Pontos = 0
         PontosDisplay.innerHTML = `Pontos: ${0}`;
         document.getElementById('principal').innerHTML=tabuleiro+"</table>";
@@ -71,6 +75,11 @@
         vivo=true;
         anda();
     }
+
+    btConvidar.addEventListener("click", convidar);
+    function convidar(){
+        outLink.textContent = "Compartilhe o game com seus amigos através do link: https://ronald-snake-game-js.herokuapp.com/";
+    }   
 </script>
 </body>
 </html>
